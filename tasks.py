@@ -51,7 +51,7 @@ def main():
     # 'send', 'sendall', 'sendfile', 'sendmsg', 'sendto', 'server_hostname', 'server_side', 'session', 'session_reused', 'set_inheritable',
     # 'setblocking', 'setsockopt', 'settimeout', 'share', 'shared_ciphers', 'shutdown', 'suppress_ragged_eofs', 'timeout', 'type', 'unwrap',
     # 'verify_client_post_handshake', 'version', 'write']
-    # server_hostname
+    #
     # DIR: SOCK.context
     # ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
     # '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__',
