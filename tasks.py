@@ -1,4 +1,5 @@
 import logging
+from ssl import TLSVersion
 import requests
 from RPA.Robocorp.Vault import Vault
 from http.client import HTTPConnection  # py3
@@ -15,6 +16,26 @@ def _connect(self):
     global SOCK
     _orig_connect(self)
     SOCK = self.sock
+    output_sock_information(SOCK)
+
+
+def output_sock_information(sock_instance):
+    tlscon = sock_instance.context
+    ciphers = tlscon.get_ciphers()
+    for cip in ciphers:
+        print(f"Cipher: {cip}")
+    print(f"CERT LOCATION: {requests.certs.where()}")
+    print(f"SERVER HOSTNAME: {sock_instance.server_hostname}")
+    print(f"PEER NAME: {sock_instance.getpeername()}")
+    # print(f"SOCK OPT: {sock_instance.getsockopt()}")
+    print(f"TIMEOUT: {sock_instance.gettimeout()}")
+    print(f"SOCK version: {sock_instance.version()}")
+    print(
+        f"SOCK CONTEXT minimum_version: {type(sock_instance.context.minimum_version)} {TLSVersion(sock_instance.context.minimum_version).name}"
+    )
+    print(
+        f"SOCK CONTEXT maximum_version: {type(sock_instance.context.maximum_version)} {TLSVersion(sock_instance.context.maximum_version).name}"
+    )
 
 
 requests.packages.urllib3.connection.VerifiedHTTPSConnection.connect = _connect
@@ -60,15 +81,7 @@ def main():
     # 'minimum_version', 'num_tickets', 'options', 'post_handshake_auth', 'protocol', 'session_stats', 'set_alpn_protocols', 'set_ciphers',
     # 'set_default_verify_paths', 'set_ecdh_curve', 'set_npn_protocols', 'set_servername_callback', 'sni_callback', 'sslobject_class',
     # 'sslsocket_class', 'verify_flags', 'verify_mode', 'wrap_bio', 'wrap_socket']
-    tlscon = SOCK.context
-    ciphers = tlscon.get_ciphers()
-    for cip in ciphers:
-        print(f"Cipher: {cip}")
-    print(f"CERT LOCATION: {requests.certs.where()}")
-    print(f"SERVER HOSTNAME: {SOCK.server_hostname}")
-    print(f"SOCK CONTEXT version: {SOCK.version()}")
-    print(f"SOCK CONTEXT minimum_version: {SOCK.context.minimum_version}")
-    print(f"SOCK CONTEXT maximum_version: {SOCK.context.maximum_version}")
+
     # print("Remote certificates: %s" % (tlscon.get_peer_certificate()))
     # print("Protocol version: %s" % tlscon.get_protocol_version_name())
 
