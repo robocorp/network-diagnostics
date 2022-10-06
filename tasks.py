@@ -66,9 +66,11 @@ def main():
     ciphers = tlscon.get_ciphers()
     for cip in ciphers:
         print(f"Cipher: {cip}")
-    print(f"CERT location: {print(requests.certs.where())}")
+    print(f"CERT LOCATION: {requests.certs.where()}")
     print(f"SERVER HOSTNAME: {SOCK.server_hostname}")
-    print(f"SERVER HOSTNAME: {SOCK.version}")
+    print(f"SOCK CONTEXT version: {SOCK.version()}")
+    print(f"SOCK CONTEXT minimum_version: {SOCK.context.minimum_version}")
+    print(f"SOCK CONTEXT maximum_version: {SOCK.context.maximum_version}")
     # print("Remote certificates: %s" % (tlscon.get_peer_certificate()))
     # print("Protocol version: %s" % tlscon.get_protocol_version_name())
 
