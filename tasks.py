@@ -24,6 +24,8 @@ def output_sock_information(sock_instance):
     ciphers = tlscon.get_ciphers()
     for cip in ciphers:
         print(f"Cipher: {cip}")
+    
+    print(f"\n")
     print(f"CERT LOCATION: {requests.certs.where()}")
     print(f"SERVER HOSTNAME: {sock_instance.server_hostname}")
     print(f"PEER NAME: {sock_instance.getpeername()}")
@@ -36,25 +38,9 @@ def output_sock_information(sock_instance):
     print(
         f"SOCK CONTEXT maximum_version: {type(sock_instance.context.maximum_version)} {TLSVersion(sock_instance.context.maximum_version).name}"
     )
+    print(f"\n")
 
-
-requests.packages.urllib3.connection.VerifiedHTTPSConnection.connect = _connect
-
-
-def main():
-    req_log = logging.getLogger("requests.packages.urllib3")
-    req_log.setLevel(logging.DEBUG)
-    req_log.propagate = True
-
-    # logging from urllib3 to console
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-    req_log.addHandler(ch)
-
-    # print statements from `http.client.HTTPConnection` to console/stdout
-    HTTPConnection.debuglevel = 1
-
-    secrets = Vault().get_secret("ever")
+    # Lists for socket and socket context values:
     # print(dir(SOCK))
     # print(dir(SOCK.context))
     # DIR: SOCK
@@ -82,9 +68,27 @@ def main():
     # 'set_default_verify_paths', 'set_ecdh_curve', 'set_npn_protocols', 'set_servername_callback', 'sni_callback', 'sslobject_class',
     # 'sslsocket_class', 'verify_flags', 'verify_mode', 'wrap_bio', 'wrap_socket']
 
-    # print("Remote certificates: %s" % (tlscon.get_peer_certificate()))
-    # print("Protocol version: %s" % tlscon.get_protocol_version_name())
 
+requests.packages.urllib3.connection.VerifiedHTTPSConnection.connect = _connect
+
+
+def main():
+    req_log = logging.getLogger("requests.packages.urllib3")
+    req_log.setLevel(logging.DEBUG)
+    req_log.propagate = True
+
+    # logging from urllib3 to console
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+    req_log.addHandler(ch)
+
+    # print statements from `http.client.HTTPConnection` to console/stdout
+    HTTPConnection.debuglevel = 1
+
+    # The bot just tries to read a secret from Control Room Vault to test the connection.
+    secrets = Vault().get_secret("ever")
+
+    
 
 if __name__ == "__main__":
     main()
