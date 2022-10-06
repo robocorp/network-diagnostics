@@ -19,8 +19,6 @@ def _connect(self):
 
 requests.packages.urllib3.connection.VerifiedHTTPSConnection.connect = _connect
 
-# requests.get('https://yahoo.com')
-
 
 def main():
     req_log = logging.getLogger("requests.packages.urllib3")
