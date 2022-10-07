@@ -13,3 +13,6 @@ setting environment variable `TARGET_ROBOCORP_VAULT`.
 
 This bot can be customized to make any kind of request using Python's `requests` package.
 
+## Bot `TLS OpenSSL`
+
+Will run `openssl` command and outputs information.
