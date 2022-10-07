@@ -7,6 +7,9 @@ tasks:
     shell: python task_robocorp_vault.py
   TLS Debug Request:
     shell: python task_generic_request.py
+  TLS OpenSSL:
+    shell: openssl s_client -connect api.eu1.robocorp.com:443 -prexit
+    
 condaConfigFile: conda.yaml
 
 environmentConfigs:

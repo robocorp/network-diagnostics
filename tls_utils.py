@@ -1,8 +1,11 @@
 import logging
 from ssl import TLSVersion
 import requests
+from requests_toolbelt.utils import dump
+import textwrap
+
 from RPA.Robocorp.Vault import Vault
-from http.client import HTTPConnection
+from http.client import HTTPConnection, HTTPResponse
 
 import requests
 from requests.packages.urllib3.connection import VerifiedHTTPSConnection
@@ -50,10 +53,10 @@ def output_sock_information(sock_instance):
     print(f'\n{"-"*9} BEGIN SOCK OUTPUT {"-"*9}')
     ciphers = tlscon.get_ciphers()
     for cip in ciphers:
-        print(f"Cipher: {cip}")
+        print(f"CIPHER: {cip}")
     print(f"CERT LOCATION: {requests.certs.where()}")
     print(f"SERVER HOSTNAME: {sock_instance.server_hostname}")
-    print(f"PEER NAME: {sock_instance.getpeername()}")
+    print(f"PEER NAME: {':'.join([str(part) for part in sock_instance.getpeername()])}")
     # print(f"SOCK OPT: {sock_instance.getsockopt()}")
     print(f"TIMEOUT: {sock_instance.gettimeout()}")
     print(f"SOCK version: {sock_instance.version()}")
