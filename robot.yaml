@@ -5,7 +5,8 @@ tasks:
   # Task names here are used when executing the bots, so renaming these is recommended.
   TLS Debug Robocorp Vault:
     shell: python task_robocorp_vault.py
-
+  TLS Debug Request:
+    shell: python task_generic_request.py
 condaConfigFile: conda.yaml
 
 environmentConfigs:
