@@ -10,7 +10,8 @@ def main():
     patch_send()
 
     # The bot just tries to read a secret from Control Room Vault to test the connection.
-    secrets = Vault().get_secret("ever")
+    NAME_OF_THE_VAULT = "ever"
+    secrets = Vault().get_secret(NAME_OF_THE_VAULT)
 
 
 if __name__ == "__main__":
