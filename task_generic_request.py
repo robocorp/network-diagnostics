@@ -42,7 +42,7 @@ def main():
     # The bot just tries to perform generic request into a endpoint
     request_parameters = {
         "method": "GET",
-        "url": "https://api.eu1.robocorp.com",
+        "url": "https://api.us1.robocorp.com",
         "headers": {},
     }
     requests.request(**request_parameters)
