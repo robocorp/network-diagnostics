@@ -9,7 +9,9 @@ tasks:
     shell: python task_generic_request.py
   TLS OpenSSL:
     shell: openssl s_client -connect api.us1.robocorp.com:443 -prexit -showcerts
-
+  Requests Help:
+    shell: python -m requests.help
+    
 condaConfigFile: conda.yaml
 
 environmentConfigs:
