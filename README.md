@@ -16,3 +16,7 @@ This bot can be customized to make any kind of request using Python's `requests`
 ## Bot `TLS OpenSSL`
 
 Will run `openssl` command and outputs information.
+
+## Bot `Requests Help`
+
+Will run `python -m requests.help` command, which outputs information from the Python `requests` package.
