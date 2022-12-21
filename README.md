@@ -19,7 +19,7 @@ The outputs are logged into `/output/log.html`
 Simplest way is to get rcc and just use it to run:
 ```
 curl -o rcc.exe https://downloads.robocorp.com/rcc/releases/latest/windows64/rcc.exe
-rcc pull github.com/robocorp/tls-logging
-cd tls-logging-master
+rcc pull github.com/robocorp/network-diagnostics
+cd network-diagnostics-master
 rcc run
 ```
