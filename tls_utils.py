@@ -8,7 +8,6 @@ from RPA.Robocorp.Vault import Vault
 from http.client import HTTPConnection, HTTPResponse
 
 import requests
-from requests.packages.urllib3.connection import VerifiedHTTPSConnection
 
 SOCK = None
 

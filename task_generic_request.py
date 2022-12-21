@@ -1,8 +1,18 @@
 import requests
+import sys
 from tls_utils import set_python_logging, patch_send
 
 
 def main():
+    targetInstanceUrl = 'https://api.eu1.robocorp.com'
+    instance = 'EU'
+    if len(sys.argv) == 2:
+        instance = sys.argv[1]
+
+    if instance == 'US':
+        targetInstanceUrl = 'https://api.us1.robocorp.com'
+
+
     #
     # CONFIGURATIONS FOR THE REQUEST LOGGING
     #
@@ -42,7 +52,7 @@ def main():
     # The bot just tries to perform generic request into a endpoint
     request_parameters = {
         "method": "GET",
-        "url": "https://api.us1.robocorp.com",
+        "url": targetInstanceUrl,
         "headers": {},
     }
     requests.request(**request_parameters)

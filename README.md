@@ -1,22 +1,25 @@
-# tls-logging
+# Network Diagnostics Robot
 
-Bots to log and hunt down network traffic TLS level problems.
+Robot logs some common diagnostics to help hunt down network traffic level problems:
+- RCC diagnostics to get the machine generic state
+- Check proxy settings via: `netsh winhttp show proxy`
+  - (Note: not 100% reliable as some proxies do not show up here)
+- Requests -library help printout
+- Test TLS communications:
+  - Directly using OpenSSL
+  - Using Requests -library agains Robocorp EU instance
+  - Using Requests -library agains Robocorp US instance
 
+The outputs are logged into `/output/log.html`
 
-## Bot `TLS Debug Robocorp Vault` 
+> Verify the content of this file before sharing
 
-This bot connects to the Robocorp Vault by executing `Get Secret` using `rpaframework` library `RPA.Robocorp.Vault`.
-Target Robocorp Vault name is by default **ever**, but this can be changed in the `task_robocorp_vault.py` file or by
-setting environment variable `TARGET_ROBOCORP_VAULT`.
+## To run this robot
 
-## Bot `TLS Debug Request` 
-
-This bot can be customized to make any kind of request using Python's `requests` package.
-
-## Bot `TLS OpenSSL`
-
-Will run `openssl` command and outputs information.
-
-## Bot `Requests Help`
-
-Will run `python -m requests.help` command, which outputs information from the Python `requests` package.
+Simplest way is to get rcc and just use it to run:
+```
+curl -o rcc.exe https://downloads.robocorp.com/rcc/releases/latest/windows64/rcc.exe
+rcc pull github.com/robocorp/tls-logging
+cd tls-logging-master
+rcc run
+```
